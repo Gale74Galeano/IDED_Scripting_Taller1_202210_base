@@ -21,6 +21,7 @@ namespace TestProject1
             Stack<int> numbers = new Stack<int>();
             Stack<int> menosuno = new Stack<int>();
 
+
             while (numero >= 0)
             {
                 numbers.Push(numero);     
