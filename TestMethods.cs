@@ -21,20 +21,13 @@ namespace TestProject1
             Stack<int> numbers = new Stack<int>();
             Stack<int> menosuno = new Stack<int>();
 
-            Console.WriteLine("Introduzca cualquier numero entero positivo")
-            numero = Int32.Parse(Console.ReadLine());
-
-            if(numero<0 && numero != int) 
-            {
-                Console.WriteLine("Incorrecto, por favor ingrase un numero entero positivo")
-            }
-           
             while (numero >= 0)
             {
                 numbers.Push(numero);     
                 tmp = numbers.Peek();
+                
 
-                if(tmp <= numbers.Peek())
+                if(numbers.Contains() >= tmp)
                 {
                     menosuno.Push(-1);
                 }
@@ -44,7 +37,15 @@ namespace TestProject1
                 }
             }
 
-            Stack<int> result = null;
+            foreach (int num in menosuno)
+                Console.WriteLine("->{0}" ,num);
+
+            Console.WriteLine("------");
+
+            foreach (int num in numbers)
+                Console.WriteLine("->{0}" ,num);
+
+            Stack<int> result = menosuno;
 
             return result;
         }
