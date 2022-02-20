@@ -6,6 +6,13 @@ namespace TestProject1
     {
         public static void Main(string[] args)
         {
+
+            Tests test = new Tests();
+
+            test.TestFillDictionaryFromSource(); 
+            test.TestCountDictionaryRegistriesWithValueType(); 
+            test.TestSortDictionaryRegistries();
+
             Console.WriteLine("Hello world");
             Console.WriteLine("Here you can write console prints to test your implementation outside the testing environment");
         }
