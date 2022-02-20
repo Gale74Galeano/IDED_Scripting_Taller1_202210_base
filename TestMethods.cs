@@ -15,6 +15,35 @@ namespace TestProject1
 
         internal static Stack<int> GetNextGreaterValue(Stack<int> sourceStack)
         {
+            int numero;
+            int tmp = 0;
+
+            Stack<int> numbers = new Stack<int>();
+            Stack<int> menosuno = new Stack<int>();
+
+            Console.WriteLine("Introduzca cualquier numero entero positivo")
+            numero = Int32.Parse(Console.ReadLine());
+
+            if(numero<0 && numero != int) 
+            {
+                Console.WriteLine("Incorrecto, por favor ingrase un numero entero positivo")
+            }
+           
+            while (numero >= 0)
+            {
+                numbers.Push(numero);     
+                tmp = numbers.Peek();
+
+                if(tmp <= numbers.Peek())
+                {
+                    menosuno.Push(-1);
+                }
+                else
+                {
+                    menosuno.Push(tmp);
+                }
+            }
+
             Stack<int> result = null;
 
             return result;
