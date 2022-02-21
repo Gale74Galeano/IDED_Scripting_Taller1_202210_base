@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Linq;
+
 namespace TestProject1
 {
     internal class TestMethods
@@ -15,38 +17,38 @@ namespace TestProject1
 
         internal static Stack<int> GetNextGreaterValue(Stack<int> sourceStack)
         {
-            int numero;
-            int tmp = 0;
+            //int numero;
+            //int tmp = 0;
 
-            Stack<int> numbers = new Stack<int>();
-            Stack<int> menosuno = new Stack<int>();
+            //Stack<int> numbers = new Stack<int>();
+            //Stack<int> menosuno = new Stack<int>();
 
 
-            while (numero >= 0)
-            {
-                numbers.Push(numero);     
-                tmp = numbers.Peek();
-                
+            //while (numero >= 0)
+            //{
+            //    numbers.Push(numero);     
+            //    tmp = numbers.Peek();
 
-                if(numbers.Contains() >= tmp)
-                {
-                    menosuno.Push(-1);
-                }
-                else
-                {
-                    menosuno.Push(tmp);
-                }
-            }
 
-            foreach (int num in menosuno)
-                Console.WriteLine("->{0}" ,num);
+            //    if(numbers.Contains() >= tmp)
+            //    {
+            //        menosuno.Push(-1);
+            //    }
+            //    else
+            //    {
+            //        menosuno.Push(tmp);
+            //    }
+            //}
 
-            Console.WriteLine("------");
+            //foreach (int num in menosuno)
+            //    Console.WriteLine("->{0}" ,num);
 
-            foreach (int num in numbers)
-                Console.WriteLine("->{0}" ,num);
+            //Console.WriteLine("------");
 
-            Stack<int> result = menosuno;
+            //foreach (int num in numbers)
+            //    Console.WriteLine("->{0}" ,num);
+
+            Stack<int> result = null;
 
             return result;
         }
@@ -167,7 +169,40 @@ namespace TestProject1
 
         internal static Queue<Ticket>[] ClassifyTickets(List<Ticket> sourceList)
         {
-            Queue<Ticket>[] result = null;
+            Queue<Ticket>[] result = new Queue<Ticket>[3];
+
+            string[] currRequest = { Ticket.ERequestType.Payment.ToString(), Ticket.ERequestType.Subscription.ToString(), Ticket.ERequestType.Cancellation.ToString() };
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = new Queue<Ticket>();
+                List<Ticket> currList = new List<Ticket>();
+                foreach (var item in sourceList)
+                {
+                    if (item.RequestType.ToString() == currRequest[i])
+                    {
+                        currList.Add(item);
+                    }
+
+                }
+                List<Ticket> turnSorted = currList.OrderBy(x => x.Turn).ToList();
+
+                //Console.WriteLine("queue "+i);
+
+                //foreach (var item in turnSorted)
+                //{
+                //    Console.WriteLine(item.RequestType+ " : "+item.Turn);
+                //}
+
+                foreach (var item in turnSorted)
+                {
+                    result[i].Enqueue(item);
+
+                }
+
+            }
+
+
 
             return result;
         }
@@ -175,6 +210,21 @@ namespace TestProject1
         internal static bool AddNewTicket(Queue<Ticket> targetQueue, Ticket ticket)
         {
             bool result = false;
+
+            foreach (var item in targetQueue)
+            {
+                if(ticket.RequestType==item.RequestType && ticket.Turn<100)
+                {
+                    targetQueue.Enqueue(ticket);
+                    result = true;
+                    break;
+                }
+                else if (ticket.RequestType != item.RequestType || ticket.Turn > 100)
+                {
+                    result = false;
+                    break;
+                }
+            }
 
             return result;
         }

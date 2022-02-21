@@ -9,9 +9,11 @@ namespace TestProject1
 
             Tests test = new Tests();
 
-            test.TestFillDictionaryFromSource(); 
-            test.TestCountDictionaryRegistriesWithValueType(); 
+            test.TestFillDictionaryFromSource();
+            test.TestCountDictionaryRegistriesWithValueType();
             test.TestSortDictionaryRegistries();
+            test.TestClassifyTickets(); 
+            test.TestAddNewTicket();
 
             Console.WriteLine("Hello world");
             Console.WriteLine("Here you can write console prints to test your implementation outside the testing environment");
